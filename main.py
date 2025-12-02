@@ -1,6 +1,6 @@
 from utils.database import connect_db
-from utils.getMonster import monsters
-from utils.getHero import heroes
+from utils.Monster import monsters
+from utils.Hero import heroes
 
 connect_db("test")
 
