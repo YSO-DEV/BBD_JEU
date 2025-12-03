@@ -1,19 +1,11 @@
 from utils.database import connect_db
 from utils.Monster import monsters
 from utils.Hero import heroes
+from utils.show import clear_screen , show_leaderboard
+
+
 
 connect_db("test")
-
-def show_leaderboard() -> None:
-    """
-    Returns a list of score instances.
-    
-    Returns:
-        list[score]: List containing score objects
-    """
-    print( "Showing the Leaderboard")
-
-
 
 def get_user_input(choice:str) -> str:
     """
@@ -24,9 +16,10 @@ def get_user_input(choice:str) -> str:
     user_input = input(str(choice))
     return user_input
     
-def get_player_name():
+def get_player_name() -> str:
     """
-    
+    Returns:
+        str: _description_
     """
     username = get_user_input("what is your name? ")
     print( username )
@@ -61,10 +54,16 @@ def main():
     print("veuillez choisir votre equipe ")
     get_user_team()
     
+    
     while True: 
         show_leaderboard()
         
         get_user_input("")
     
+        print( "this is a test  : ")
+
+        clear_screen()
+        input("this is a test")
+        
     
-# main()
+main()

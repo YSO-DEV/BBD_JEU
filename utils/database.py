@@ -5,17 +5,21 @@ import os
 
 load_dotenv()
 
+
+DATABASE_NAME = "PythonGame"
+
 client = MongoClient(os.getenv("MONGO_URI"))
 
 
-def connect_db():
-    db = client["PythonGame"]
-    print("Connected to database: PythonGame")
+def connect_db(db_name: str = None):
+    db_name = db_name or DATABASE_NAME
+    db = client[db_name]
+    print(f"Connected to database: {db_name}")
     return db
 
 
 def get_values(collection_name: str):
-    db = client["PythonGame"]
+    db = client[DATABASE_NAME]
     collection = db[collection_name]
     print("All the collection:", collection_name)
     return collection
@@ -31,6 +35,8 @@ def show_all_values(collection_name: str):
     for element in collection.find():
         print(element)
     print("=" * 50)
+    
+    
 
 
 

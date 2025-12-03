@@ -1,4 +1,4 @@
-from database import connect_db
+from .database import connect_db
 import pymongo
 
 
@@ -34,7 +34,7 @@ class Hero:
 heroes = Hero.create_all_hero()
 
 
-def insert_hero():
+def insert_hero() -> bool:
     db = connect_db()
     collection = db[COLLECTION_NAME]
     
@@ -50,13 +50,14 @@ def insert_hero():
         print(f"Trying adding {hero_data} in the database {collection}")
         collection.insert_one(hero_data)
         print("Hero inserted successfully")
+        return True
         
     except pymongo.errors.DuplicateKeyError:
         raise ValueError("Duplicate key: hero with this name already exists")
     
 
 
-def delete_hero():
+def delete_hero() -> bool:
     db = connect_db()
     collection = db[COLLECTION_NAME]
 
@@ -64,7 +65,7 @@ def delete_hero():
 
     if hero is None:
         print("Hero 'guerrier' not found in the database.")
-        return
+        return False
 
     print(f"Deleting hero with _id: {hero['_id']}")
 
@@ -74,10 +75,12 @@ def delete_hero():
         print("Hero 'guerrier' deleted successfully.")
     else:
         print("Failed to delete hero.")
+        
+    return True
 
 
 
-def get_all_hero ( ) -> list:
+def get_all_hero() -> list:
     db = connect_db()
     collection = db[COLLECTION_NAME]
     
@@ -100,10 +103,8 @@ def get_hero_by_id( id:str ) -> dict:
     
     
     
-get_hero_by_id( "692f03075a6aca07076227f4" )
+get_hero_by_id( "")
 get_all_hero()
-
-
 # delete_hero()
 # insert_hero()
 
