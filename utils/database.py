@@ -11,10 +11,10 @@ DATABASE_NAME = "PythonGame"
 client = MongoClient(os.getenv("MONGO_URI"))
 
 
-def connect_db(db_name: str = None):
-    db_name = db_name or DATABASE_NAME
-    db = client[db_name]
-    print(f"Connected to database: {db_name}")
+def connect_db() :
+
+    db = client[DATABASE_NAME]
+    print(f"Connected to database: {DATABASE_NAME}")
     return db
 
 

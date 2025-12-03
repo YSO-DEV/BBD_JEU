@@ -27,9 +27,13 @@ class Stats:
         return reduced_damage
 
     def is_alive(self) -> bool:
-        """Returns True if pv > 0."""
+        """
+        Returns True if pv > 0.
+        """
         return self.pv > 0
 
     def heal(self, amount: int):
-        """Heals the entity."""
+        """
+        Heals the entity.
+        """
         self.pv += amount
