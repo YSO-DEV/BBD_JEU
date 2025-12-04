@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-def init_database(uri="mongodb://localhost:27017/", db_name="game_db"):
+def init_database(uri="mongodb://localhost:27017/", db_name="PythonGame"):
     """
     Initialize MongoDB database with default heroes and monsters.
     """
@@ -42,6 +42,8 @@ def init_database(uri="mongodb://localhost:27017/", db_name="game_db"):
     }
 
     # Insert into collections
+    monsters_col.insert_many([v for v in monsters.values()])
+    heroes_col.insert_many([v for v in heroes.values()])
 
     print(f"Database '{db_name}' initialized with {len(monsters)} monsters and {len(heroes)} heroes.")
 
